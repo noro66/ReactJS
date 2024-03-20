@@ -8,6 +8,7 @@ import Input from "./forms/input";
 import Fruits from "./fruits";
 import Counter from "./Counter/counter";
 import Event from "./Event/event";
+import Form from "./forms/form";
 
 
 
@@ -16,7 +17,7 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 const fruits = ['dela7', 'le3neb', 'teffah', 'lbanan']
 root.render(
   <React.StrictMode>
-      <Counter/>
+      <Form/>
   </React.StrictMode>
 );
 
