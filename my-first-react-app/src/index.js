@@ -7,6 +7,7 @@ import Hello from "./HelloReact/hello";
 import Input from "./forms/input";
 import Fruits from "./fruits";
 import Counter from "./Counter/counter";
+import Event from "./Event/event";
 
 
 

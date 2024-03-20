@@ -10,10 +10,10 @@
 import {Component} from "react";
 
 export default class Fruits extends Component{
-    constructor(fruits) {
-        super(fruits);
+    constructor(props) {
+        super(props);
     }
-    displayFruits = () => this.fruits.map(fruit => <li>{fruit}</li>)
+    displayFruits = () => this.props.fruits.map(fruit => <li>{fruit}</li>)
 
     render() {
         return <>

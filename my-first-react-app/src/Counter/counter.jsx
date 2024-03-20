@@ -7,22 +7,18 @@ export default class Counter extends Component{
         date : undefined,
         }
     }
-    componentDidMount()
-    {
-        setInterval(
-            ()=>{
-                this.setState(
-                     prevState => {
 
-                         return {counter: prevState.counter+1}
-                     }
-                )
-            }, 1000
+    handelClick = ()=>{
+        this.setState(
+            prevState => {
+
+                return {counter: prevState.counter+1}
+            }
         )
-
     }
-
     render() {
-        return <div>it passed {this.state.counter} seconds ago</div>
+        return <div>
+            <button onClick={this.handelClick}>Click click</button>
+            it passed {this.state.counter} seconds ago</div>
     }
 }
