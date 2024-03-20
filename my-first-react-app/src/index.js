@@ -2,13 +2,13 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
-import Fruits from "./fruits/fruits";
+import ToogleName from "./Toogle/toogleName";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 const fruits = ['dela7', 'le3neb', 'teffah', 'lbanan']
 root.render(
   <React.StrictMode>
-      <Fruits/>
+      <ToogleName/>
   </React.StrictMode>
 );
 
