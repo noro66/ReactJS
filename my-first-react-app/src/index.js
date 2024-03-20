@@ -1,23 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
-import Hello from "./HelloReact/hello";
-import Input from "./forms/input";
-import Fruits from "./fruits";
-import Counter from "./Counter/counter";
-import Event from "./Event/event";
-import Form from "./forms/form";
-
-
-
+import Fruits from "./fruits/fruits";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 const fruits = ['dela7', 'le3neb', 'teffah', 'lbanan']
 root.render(
   <React.StrictMode>
-      <Form/>
+      <Fruits/>
   </React.StrictMode>
 );
 
