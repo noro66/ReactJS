@@ -2,26 +2,37 @@ import {useState} from "react";
 
 export default  function Form()
 {
-    const [name, setName] = useState('');
-    const [age, setAge] = useState('');
+    const [formValues, setFormValues] = useState({
+        "name":"",
+        "age":"",
+        "Conditions":false,
+        "contry":"MA"
+    });
 
-   const handelNameInputChange = ()=>{
-       const name = document.getElementById('name').value;
-       setName(name);
+
+   const handelInputChange = (e)=>{
+      let id = e.currentTarget.id;
+       let value =  e.currentTarget.type === 'checkbox' ?
+           e.currentTarget.checked :
+           e.currentTarget.value;
+      setFormValues(prevState => {
+          return ({...prevState, ...{[id] : value}});
+      })
     }
-    const handelAgeInputChange = ()=>{
-       const age = document.getElementById('age').value;
-       setAge(age);
-    }
-    const handelSubmit = (e)=>{
-       e.preventDefault();
-       console.log(name, age)
-    }
+
     return <div>
+        {JSON.stringify(formValues)}
         <form >
-            <input type="text" id='name' onChange={handelNameInputChange} placeholder={'Name'}/>
-            <input type="text" id='age' onChange={handelAgeInputChange} placeholder={'Age'}/>
-            <button type="submit" onClick={handelSubmit}>Submit</button>
+            <input type="text" id='name' onChange={handelInputChange} placeholder={'Name'}/>
+            <input type="text" id='age' onChange={handelInputChange} placeholder={'Age'}/>
+            <input type="checkbox" id='Conditions' onChange={handelInputChange} />
+            <select  onChange={handelInputChange} name="country" id="contry">
+                <option value="" disabled selected>Select Option</option>
+                <option value="MA">Morocco</option>
+                <option value="JZ">Algeria</option>
+                <option value="TN">Tunisia</option>
+            </select>
+            <button type="submit" onClick="">Submit</button>
         </form>
     </div>
 }
