@@ -16,7 +16,7 @@ export  default function ValidationForm()
       const countryValue =  inputCountryRef.current.value;
       const messageValue =  inputMessageRef.current.value;
       const conditionValue =  inputConditionsRef.current.checked;
-      let formIsValidate = false;
+      let formIsValidate = true;
 
       if (nameValue.trim() === ''){
           setErrors(prevState => {
@@ -48,22 +48,22 @@ export  default function ValidationForm()
           })
           formIsValidate = false;
       }
-
+    return formIsValidate;
     }
-    useEffect(()=>{
-        console.log(errors)
-    }, [errors])
+    // useEffect(()=>{
+    //     console.log(errors)
+    // }, [errors])
     function handelSubmit(e) {
-        e.preventDefault();
         setErrors([]);
-        validateForm();
-
+       if (! validateForm()){
+           e.preventDefault();
+       }
     }
 
     return <div className="container mt-3">
         {errors.length > 0 ?
         <ul className=" text-bg-danger">
-            {errors.map((error, key) => <li>{error}</li>)
+            {errors.map((error, key) => <li key={key}>{error}</li>)
             }
         </ul>
             : ''
@@ -87,7 +87,7 @@ export  default function ValidationForm()
         <div className="form-group mb-2">
             <label htmlFor="message">Country : </label><br/>
             <select ref={inputCountryRef}  name="country" id="contry">
-            <option value="" disabled selected> Select Option</option>
+            <option value="" disabled defaultValue="Select Option"> Select Option</option>
             <option value="MA">Morocco</option>
             <option value="JZ">Algeria</option>
             <option value="TN">Tunisia</option>
