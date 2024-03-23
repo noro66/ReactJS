@@ -13,7 +13,7 @@ export default function FormValidation()
         let  isFormValid = true;
         if (input.current.type === 'checkbox'){
             if (!input.current.checked) {
-                setErrors(prevState => ({   ...prevState,  [input.current.id]: 'field required' }));
+                setErrors(prevState => ({   ...prevState,  [input.current.id]: 'conditions must be checked' }));
                 isFormValid = false;
             }
         }else if((input.current.value).trim() === '') {
@@ -77,24 +77,23 @@ export default function FormValidation()
                 <label htmlFor="name">Name:</label>
                 <input ref={name} type="text" name="name" id="name" className="form-control"
                        placeholder="Enter Your name" aria-describedby="nameHelp"/>
-                <small id="nameHelp" className="text-muted"> {errors.name ?? "Please enter a valid name"} </small>
-                <div>{errors.length > 0 && 'name' in errors ? errors.name : ''}</div>
+                <small id="nameHelp" className="text-black"> { errors.name  ? <span className="text-danger">Name :  {errors.name} </span> : "Please enter a valid name"} </small>
             </div>
             <div className="form-group mb-2">
             <label htmlFor="email">Email:</label>
                 <input ref={email} type="text" name="email" id="email" className="form-control"
                        placeholder="Enter Your email" aria-describedby="emailHelp"/>
-                <small id="emailHelp" className="text-muted">Please enter a valid  </small>
+                <small id="emailHelp" className="text-muted"> {errors.email  ? <span className="text-danger">Email :  {errors.email} </span> : "Please enter a valid" } </small>
             </div>
             <div className="form-group mb-2">
                 <label htmlFor="message">Message:</label>
                 <textarea ref={message} name="message" id="message" className="form-control"
                           placeholder="Enter Your message" aria-describedby="messageHelp"></textarea>
-                <small id="messageHelp" className="text-muted">Please enter a valid message</small>
+                <small id="messageHelp" className="text-muted"> { errors.message  ? <span className="text-danger">message :  {errors.message} </span> : "Please enter a valid message"}</small>
             </div>
             <div className="form-group mb-2 d-flex align-items-center">
-                <input ref={conditions} type="checkbox" id="Conditions"/>
-                <label htmlFor="Conditions" className="text-muted mx-2">Terms and conditions</label>
+                <input ref={conditions} type="checkbox" id="conditions"/>
+                <label htmlFor="conditions" className="text-muted mx-2">Terms and conditions : <span className="text-danger"> { errors.conditions ?? '' } </span> </label>
             </div>
             <div className="form-group mb-2 d-flex align-items-center justify-content-center">
                 <button type="submit" className="btn btn-info w-100">Send</button>
