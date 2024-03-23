@@ -6,22 +6,22 @@ export default function FormValidation()
     const email = useRef();
     const message = useRef();
     const conditions = useRef();
-    const [errors, setErrors] = useState([]);
+    const [errors, setErrors] = useState({});
     const [isFormSubmited, setisFormSubmited] = useState(false);
 
     const checkInput = (input) => {
         let  isFormValid = true;
         if (input.current.type === 'checkbox'){
             if (!input.current.checked) {
-                setErrors(prevState => [...prevState, { [input.current.id]: ['field required'] }]);
+                setErrors(prevState => ({   ...prevState,  [input.current.id]: 'field required' }));
                 isFormValid = false;
             }
         }else if((input.current.value).trim() === '') {
-            setErrors(prevState => [...prevState, { [input.current.id]: ['field required'] }]);
+            setErrors(prevState => ({...prevState, [input.current.id]: 'field required'}));
             isFormValid = false;
         }else if (input.current.id === 'email'){
             if (!input.current.value.match(/^\S+@\S+\.\S+$/)){
-                setErrors(prevState => [...prevState, { [input.current.id]: ['Invalid Email'] }]);
+                setErrors(prevState => ({...prevState,[input.current.id]: 'Invalid Email'}));
                 isFormValid = false;
             }
         }
@@ -35,8 +35,8 @@ export default function FormValidation()
             conditions.current.checked = false;
     }
     function handelSubmit(e) {
-
         e.preventDefault();
+        console.log(errors);
             setErrors([]);
             let  checkValid;
             const refs =[name, email, message, conditions]
@@ -52,9 +52,11 @@ export default function FormValidation()
 
     function displayErrors() {
       return   errors.map((error)=>{
+          console.log(error.keys.contains('name'));
             return <li key={Object.keys(error)[0]}> {Object.keys(error)}   :  {error[Object.keys(error)[0]]} </li>
         })
     }
+
 
     return <div className="container mt-3">
         {isFormSubmited ? <div className="alert alert-success" role="alert">
@@ -75,10 +77,11 @@ export default function FormValidation()
                 <label htmlFor="name">Name:</label>
                 <input ref={name} type="text" name="name" id="name" className="form-control"
                        placeholder="Enter Your name" aria-describedby="nameHelp"/>
-                <small id="nameHelp" className="text-muted">Please enter a valid name</small>
+                <small id="nameHelp" className="text-muted"> {errors.name ?? "Please enter a valid name"} </small>
+                <div>{errors.length > 0 && 'name' in errors ? errors.name : ''}</div>
             </div>
             <div className="form-group mb-2">
-                <label htmlFor="email">Email:</label>
+            <label htmlFor="email">Email:</label>
                 <input ref={email} type="text" name="email" id="email" className="form-control"
                        placeholder="Enter Your email" aria-describedby="emailHelp"/>
                 <small id="emailHelp" className="text-muted">Please enter a valid  </small>
