@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import {validate} from "uuid";
 
 export default function FormValidation() {
     const name = useRef();
@@ -7,6 +8,7 @@ export default function FormValidation() {
     const conditions = useRef();
     const [errors, setErrors] = useState({});
     const [isFormSubmitted, setIsFormSubmitted] = useState(false);
+    const [isSubmited,setIsSubmited] = useState(false);
 
     const checkInput = (input) => {
         let validationFailed = false;
@@ -38,8 +40,7 @@ export default function FormValidation() {
         return validationFailed;
     }
 
-    function handelSubmit(e) {
-        e.preventDefault();
+    function validateForm() {
         setIsFormSubmitted(false);
         setErrors({});
         let formIsValid = true;
@@ -50,13 +51,24 @@ export default function FormValidation() {
                 formIsValid = false;
             }
         });
+        return formIsValid;
+    }
 
-        if (formIsValid) {
+    function handelSubmit(e) {
+        setIsSubmited(true)
+        e.preventDefault();
+        if (validateForm()) {
             setIsFormSubmitted(true);
+            setIsSubmited(false);
             resetForm();
         }
     }
 
+    useEffect(() => {
+        if (isSubmited){
+            validateForm();
+        }
+    }, [errors]);
     const resetForm = () => {
         name.current.value = '';
         email.current.value = '';
