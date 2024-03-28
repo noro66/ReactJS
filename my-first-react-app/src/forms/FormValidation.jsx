@@ -33,9 +33,9 @@ export default function FormValidation() {
                 input.style.border = "1px solid green";
             }
         }else if (input.id === 'message'){
-            if (input.value.length < 200){
+            if (input.value.length < 50){
                 input.style.border = "1px solid red";
-                setErrors(prevState => ({ ...prevState, [input.id]: `Not Enough characters ${input.value.length + 1} / 200`}));
+                setErrors(prevState => ({ ...prevState, [input.id]: `Not Enough characters ${input.value.length + 1} / 50`}));
                 validationFailed = true;
             }else {
                 input.style.border = "1px solid green";
