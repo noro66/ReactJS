@@ -14,17 +14,20 @@ export  default  function UsersApp(props) {
     const [users, setUsers] = useState([]);
     const [lastId, setLastId] = useState(0);
     const  addUser = (date) => {
-        console.log(date.payload)
         setUsers(prevState => [...prevState, date.payload])
         setLastId(prevState => prevState+1)
-
+    }
+    const  updateUser = (data) => {
+        const {id, ...rest} = data.payload;
+        setUsers(prevState => prevState.map(user => user.id === id ? {id: user.id, ...rest} : user ))
     }
     return (
         <>
             <UsersContext.Provider value={{
                 users : users,
                 lastId : lastId,
-                addUser : addUser
+                addUser : addUser,
+                updateUser: updateUser
             }} >
             <UserLayout/>
             </UsersContext.Provider>

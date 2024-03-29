@@ -14,14 +14,14 @@ function UserLayout(props) {
                            <Link className='nav-link active' to={'/'}>Users List</Link>
                        </li>
                        <li className="nav-item">
-                           <Link className='nav-link active' to={'/user/create'}>Add User</Link>
+                           <Link className='nav-link active' to={'/users/create'}>Add User</Link>
                        </li>
                    </ul>
                </nav>
                <Routes>
                    <Route index element={<UsersTable/>} />
-                   <Route path={'/user/create'} element={<AddUser/>} />
-                   <Route path={'/user/:id/update'} element={<UpdateUser/>} />
+                   <Route path={'/users/create'} element={<AddUser/>} />
+                   <Route path={'/users/:id/update'} element={<UpdateUser/>} />
                </Routes>
            </BrowserRouter>
            <Outlet/>

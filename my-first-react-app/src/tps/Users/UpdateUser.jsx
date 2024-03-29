@@ -1,30 +1,41 @@
-import React, {useRef} from 'react';
+import React, {useContext, useEffect, useRef, useState} from 'react';
+import {UsersContext} from "./UsersApp";
+import {useParams} from "react-router-dom";
 
-function AddUser({lastId, onAddUser}) {
-   const fullNameRef = useRef(null);
-   const countryRef = useRef(null);
+function AddUser({onAddUser}) {
+    const fullNameRef = useRef(null);
+    const countryRef = useRef(null);
+    const idRef = useRef(0);
+    const context = useContext(UsersContext);
+    const [user, setUser] = useState({});
+    const params = useParams();
+
+    useEffect(() => {
+        const {id} = params
+        const userbuffer = context.users.filter(user => user.id === parseInt(id));
+        userbuffer.length > 0 && setUser(...userbuffer)
+    }, []);
     const resetValues = () =>{
-        fullNameRef.current.value = '';
-        countryRef.current.value = '';
+        // fullNameRef.current.value = '';
+        // countryRef.current.value = '';
     }
-   const  handelSubmit = (e) =>{
-       e.preventDefault();
-       const fullName = fullNameRef.current.value;
-       const country = countryRef.current.value;
-       if (fullName && country){
-           onAddUser({
-               payload: {
-                   id: lastId++,
-                   fullName : fullName,
-                   country : country
-               }
-           });
-           resetValues();
-       }
+    const  handelSubmit = (e) =>{
+        e.preventDefault();
 
-
-
-   }
+        const fullName = fullNameRef.current.value;
+        const country = countryRef.current.value;
+        const id = idRef.current.value;
+        if (fullName && country && id){
+            context.updateUser({
+                payload: {
+                    id: parseInt(id),
+                    fullName : fullName,
+                    country : country
+                }
+            });
+            resetValues();
+        }
+    }
 
     return (
         <form onSubmit={handelSubmit} >
@@ -35,8 +46,9 @@ function AddUser({lastId, onAddUser}) {
                     className="form-control mb-3"
                     id="id"
                     name="id"
+                    ref={idRef}
                     disabled
-                    value={lastId}
+                    defaultValue={user.id}
                 />
             </div>
             <div className="form-group">
@@ -48,6 +60,7 @@ function AddUser({lastId, onAddUser}) {
                     id="name"
                     name="name"
                     placeholder="Enter name"
+                    defaultValue={user.fullName}
                 />
             </div>
             <div className="form-group">
@@ -59,9 +72,10 @@ function AddUser({lastId, onAddUser}) {
                     id="country"
                     name="country"
                     placeholder="Enter country"
+                    defaultValue={user.country}
                 />
             </div>
-            <button type="submit" className="btn btn-primary">Add User</button>
+            <button type="submit" className="btn btn-primary">Update User</button>
         </form>
     );
 }

@@ -6,9 +6,9 @@ function AddUser({onAddUser}) {
    const countryRef = useRef(null);
    const context = useContext(UsersContext);
 
-    useEffect(() => {
-        console.log(context);
-    }, []);
+    // useEffect(() => {
+    //     console.log(context);
+    // }, []);
     const resetValues = () =>{
         fullNameRef.current.value = '';
         countryRef.current.value = '';
@@ -21,7 +21,7 @@ function AddUser({onAddUser}) {
        if (fullName && country){
            context.addUser({
                payload: {
-                   id: id,
+                   id: parseInt(id),
                    fullName : fullName,
                    country : country
                }
