@@ -1,9 +1,14 @@
-import React, {useState} from 'react';
+import React, {createContext, useContext, useState} from 'react';
 import UsersTable from "./UsersTable";
 import AddUser from "./AddUser";
+import UserLayout from "./UserLayout";
+export const UsersContext = createContext({
+    users: [],
+    lastId: 0,
+    addUser: () => null
+})
 
-
-function UsersApp(props) {
+export  default  function UsersApp(props) {
 
 
     const [users, setUsers] = useState([]);
@@ -16,10 +21,13 @@ function UsersApp(props) {
     }
     return (
         <>
-        <AddUser lastId={lastId+1} onAddUser={addUser}/>
-        <UsersTable users={users} />
+            <UsersContext.Provider value={{
+                users : users,
+                lastId : lastId,
+                addUser : addUser
+            }} >
+            <UserLayout/>
+            </UsersContext.Provider>
         </>
     );
 }
-
-export default UsersApp;

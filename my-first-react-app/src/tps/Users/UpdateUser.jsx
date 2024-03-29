@@ -1,14 +1,8 @@
-import React, {useContext, useEffect, useRef} from 'react';
-import {UsersContext} from "./UsersApp";
+import React, {useRef} from 'react';
 
-function AddUser({onAddUser}) {
+function AddUser({lastId, onAddUser}) {
    const fullNameRef = useRef(null);
    const countryRef = useRef(null);
-   const context = useContext(UsersContext);
-
-    useEffect(() => {
-        console.log(context);
-    }, []);
     const resetValues = () =>{
         fullNameRef.current.value = '';
         countryRef.current.value = '';
@@ -17,11 +11,10 @@ function AddUser({onAddUser}) {
        e.preventDefault();
        const fullName = fullNameRef.current.value;
        const country = countryRef.current.value;
-       const id = context.lastId  +  1;
        if (fullName && country){
-           context.addUser({
+           onAddUser({
                payload: {
-                   id: id,
+                   id: lastId++,
                    fullName : fullName,
                    country : country
                }
@@ -43,7 +36,7 @@ function AddUser({onAddUser}) {
                     id="id"
                     name="id"
                     disabled
-                    value={context.lastId + 1}
+                    value={lastId}
                 />
             </div>
             <div className="form-group">

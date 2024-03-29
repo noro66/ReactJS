@@ -2,8 +2,6 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import FormValidation from "./forms/FormValidation";
-import App from "./Route/App";
 import UsersApp from "./tps/Users/UsersApp";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
