@@ -15,11 +15,13 @@ export  default  function UsersApp(props) {
     const [lastId, setLastId] = useState(0);
     const  addUser = (date) => {
         setUsers(prevState => [...prevState, date.payload])
-        setLastId(prevState => prevState+1)
+        setLastId(prevState => prevState+1);
+        window.history.back();
     }
     const  updateUser = (data) => {
         const {id, ...rest} = data.payload;
         setUsers(prevState => prevState.map(user => user.id === id ? {id: user.id, ...rest} : user ))
+        window.history.back();
     }
     return (
         <>

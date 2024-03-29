@@ -15,13 +15,8 @@ function AddUser({onAddUser}) {
         const userbuffer = context.users.filter(user => user.id === parseInt(id));
         userbuffer.length > 0 && setUser(...userbuffer)
     }, []);
-    const resetValues = () =>{
-        // fullNameRef.current.value = '';
-        // countryRef.current.value = '';
-    }
     const  handelSubmit = (e) =>{
         e.preventDefault();
-
         const fullName = fullNameRef.current.value;
         const country = countryRef.current.value;
         const id = idRef.current.value;
@@ -33,7 +28,6 @@ function AddUser({onAddUser}) {
                     country : country
                 }
             });
-            resetValues();
         }
     }
 
