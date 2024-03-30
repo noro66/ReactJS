@@ -3,6 +3,7 @@ import {BrowserRouter, Link, Outlet, Route, Routes} from "react-router-dom";
 import UsersTable from "./UsersTable";
 import AddUser from "./AddUser";
 import UpdateUser from "./UpdateUser";
+import DeleteUser from "./DeleteUser";
 
 function UserLayout(props) {
     return (
@@ -22,6 +23,7 @@ function UserLayout(props) {
                    <Route index element={<UsersTable/>} />
                    <Route path={'/users/create'} element={<AddUser/>} />
                    <Route path={'/users/:id/update'} element={<UpdateUser/>} />
+                   <Route path={'/users/:id/delete'} element={<DeleteUser/>} />
                </Routes>
            </BrowserRouter>
            <Outlet/>

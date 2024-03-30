@@ -5,7 +5,9 @@ import UserLayout from "./UserLayout";
 export const UsersContext = createContext({
     users: [],
     lastId: 0,
-    addUser: () => null
+    addUser: () => null,
+    updateUser: () => null,
+    deleteUser: () => null
 })
 
 export  default  function UsersApp(props) {
@@ -23,13 +25,22 @@ export  default  function UsersApp(props) {
         setUsers(prevState => prevState.map(user => user.id === id ? {id: user.id, ...rest} : user ))
         window.history.back();
     }
+
+    const  deleteUser = (data) => {
+        setUsers(prevState => prevState.filter(user => user.id !== data.payload.id))
+        window.history.back();
+    }
+
     return (
         <>
             <UsersContext.Provider value={{
                 users : users,
                 lastId : lastId,
-                addUser : addUser,
-                updateUser: updateUser
+                actions : {
+                    addUser,
+                    updateUser,
+                    deleteUser
+                }
             }} >
             <UserLayout/>
             </UsersContext.Provider>

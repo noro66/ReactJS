@@ -21,7 +21,7 @@ function AddUser({onAddUser}) {
         const country = countryRef.current.value;
         const id = idRef.current.value;
         if (fullName && country && id){
-            context.updateUser({
+            context.actions.updateUser({
                 payload: {
                     id: parseInt(id),
                     fullName : fullName,
