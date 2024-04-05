@@ -16,7 +16,7 @@ export default function UsersTable() {
                 </td>
             </tr>
         )) : <tr>
-            <td colSpan="3">There is no Users</td>
+            <td className="text-center font-monospace" colSpan="4">There is no Users</td>
             </tr>
 
     }
