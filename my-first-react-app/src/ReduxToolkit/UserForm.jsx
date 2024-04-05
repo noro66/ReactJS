@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
-import { addUser } from './features/UserSlice'; // Import the addUser action
+import {addUser} from "./features/UserSlice"; // Import the addUser action
 
 const UserModalForm = () => {
     const dispatch = useDispatch();

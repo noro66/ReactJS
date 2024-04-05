@@ -10,16 +10,15 @@ const userSlice = createSlice({
     name: "user",
     initialState : user,
     reducers: {
-        user :{
         resetUser: (state, action) => {
-            // Reset the user state
+            console.log(action.payload);
         },
         addUser: (state, action) => {
-            // Add a new user
+            console.log(action.payload);
         },
         updateUser: (state, action) => {
             // Update an existing user
-        }}
+        }
     }
 });
 
