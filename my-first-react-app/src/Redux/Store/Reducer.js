@@ -4,7 +4,8 @@ export default function reducer(state = [], action) {
     switch (action.type){
         case ActionTypes.ADD_BUG:
             // eslint-disable-next-line no-use-before-define
-            let lastId = 0;
+            let lastId =  0;
+
             return [
                 ...state,
             {
@@ -14,6 +15,11 @@ export default function reducer(state = [], action) {
             }]
         case ActionTypes.REMOVE_BUG :
             return state.filter(bug => bug.id !== action.payload.id)
+        case ActionTypes.BUG_RESOLVED :
+            return state.map(bug =>  ( {
+                ...bug,
+                    resolved:  bug.id === action.payload.id,
+            }) )
         default:
             return state
     }

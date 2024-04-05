@@ -6,26 +6,18 @@ import {compose, pipe} from "lodash/fp";
 import UsersApp from "./tps/Users/UsersApp";
 import store from "./Redux/Store/Store";
 import * as ActionTypes from "../src/Redux/Store/ActionTypes";
+import {bugAdded, bugRemoved, bugResolved} from "./Redux/Store/Actions";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 // const fruits = ['dela7', 'le3neb', 'teffah', 'lbanan']
-const unsubscribe = store.subscribe(() =>{
-        console.log("store changed ", store.getState())
-})
-store.dispatch({
-        type: ActionTypes.ADD_BUG,
-        payload : {
-                description : "bug is added to the store",
-        }
-});
-unsubscribe();
-store.dispatch({
-        type: ActionTypes.REMOVE_BUG,
-        payload : {
-                id: 1,
-        }
-})
-console.log(store.getState())
+// const unsubscribe = store.subscribe(() =>{
+//         console.log("store changed ", store.getState())
+// })
+// unsubscribe();
+store.dispatch(bugAdded('bug Added successfully.'));
+// store.dispatch(bugRemoved(1));
+store.dispatch(bugResolved(1))
+console.log(store.getState());
 const add = a => b => a + b;
 console.log(add(6)(4))
 const trim = str => str.trim();
