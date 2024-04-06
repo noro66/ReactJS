@@ -11,17 +11,25 @@ const userSlice = createSlice({
     initialState : user,
     reducers: {
         resetUser: (state, action) => {
-            console.log(action.payload);
-        },
-        addUser: (state, action) => {
-            console.log(action.payload);
+         return  {
+               ...state,
+             name: '',
+             age: '',
+             country: ''
+            }
         },
         updateUser: (state, action) => {
-            // Update an existing user
-        }
+           return {
+               ...state,
+               name: action.payload.name,
+               country: action.payload.country,
+               age: action.payload.age,
+           }
+        },
+
     }
 });
 
-export const { resetUser, addUser, updateUser } = userSlice.actions;
+export const { resetUser, updateUser } = userSlice.actions;
 
 export default userSlice.reducer;
