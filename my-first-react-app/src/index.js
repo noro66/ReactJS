@@ -8,6 +8,7 @@ import store from "./Redux/Store/Store";
 import * as ActionTypes from "../src/Redux/Store/ActionTypes";
 import {bugAdded, bugRemoved, bugResolved} from "./Redux/Store/Actions";
 import App from "./ReduxToolkit/App";
+import Form from "./HookForm/Form";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 // const fruits = ['dela7', 'le3neb', 'teffah', 'lbanan']
@@ -28,9 +29,10 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 // const transform = pipe(trim, toLower, wrap('div'));
 // console.log(transform('javascript'));
 root.render(
+    <React.StrictMode>
         <div className="container m-auto mt-3">
-       <App/>
+            <Form/>
         </div>
-
+    </React.StrictMode>
 );
 
